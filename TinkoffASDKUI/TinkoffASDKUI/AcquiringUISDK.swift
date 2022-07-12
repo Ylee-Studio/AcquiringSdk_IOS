@@ -828,6 +828,7 @@ public class AcquiringUISDK: NSObject {
         modalViewController.title = configuration.viewTitle
         modalViewController.scanerDataSource = configuration.scaner
         modalViewController.alertViewHelper = configuration.alertViewHelper
+        modalViewController.popupStyle = configuration.popupStyle //@Semyon
 
         acquiringView = modalViewController
         
