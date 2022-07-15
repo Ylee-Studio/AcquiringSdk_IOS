@@ -277,6 +277,7 @@ public class AcquiringUISDK: NSObject {
     ///
     /// С помощью экрана оплаты используя реквизиты карты или ранее сохраненную карту
     public func presentPaymentView(on presentingViewController: UIViewController,
+                                   isNavigationFix: Bool = false,
                                    acquiringPaymentStageConfiguration: AcquiringPaymentStageConfiguration,
                                    configuration: AcquiringViewConfiguration,
                                    tinkoffPayDelegate: TinkoffPayDelegate? = nil,
@@ -297,6 +298,7 @@ public class AcquiringUISDK: NSObject {
         self.acquiringConfiguration = acquiringConfiguration
 
         presentAcquiringPaymentView(presentingViewController: presentingViewController,
+                                    isNavigationFix: isNavigationFix,
                                     customerKey: customerKey,
                                     configuration: configuration,
                                     loadCardsOutside: false,
@@ -773,6 +775,7 @@ public class AcquiringUISDK: NSObject {
     // MARK: Create and Setup AcquiringViewController
 
     private func presentAcquiringPaymentView(presentingViewController: UIViewController,
+                                             isNavigationFix: Bool = false,
                                              customerKey: String?,
                                              configuration: AcquiringViewConfiguration,
                                              loadCardsOutside: Bool = true,
@@ -828,7 +831,9 @@ public class AcquiringUISDK: NSObject {
         modalViewController.title = configuration.viewTitle
         modalViewController.scanerDataSource = configuration.scaner
         modalViewController.alertViewHelper = configuration.alertViewHelper
-        modalViewController.popupStyle = configuration.popupStyle //@Semyon
+        if isNavigationFix {
+            modalViewController.popupStyle = configuration.popupStyle //@Semyon
+        }
 
         acquiringView = modalViewController
         
